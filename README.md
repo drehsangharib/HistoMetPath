@@ -107,3 +107,10 @@ LICENSE
 ------------------------------------------------------------
 
 MIT License (or update as needed)
+
+
+<p align="center">
+  <img src="assets/logo/histometpath_logo.png" alt="HistoMetPath Logo" width="300"/>
+</p>
+
+<h2 align="center">Attention‑based Deep Learning for Histopathology</h2>
