@@ -1,0 +1,20 @@
+{
+  "seed": 42,
+  "data": {
+    "slide_embeddings": "embeddings/train_slide_embeddings.npy",
+    "slide_labels": "embeddings/train_slide_labels.npy"
+  },
+  "split": {
+    "validation_fraction": 0.30
+  },
+  "model": {
+    "pooling": "mean",
+    "max_iter": 1000
+  },
+  "evaluation": {
+    "bootstrap_samples": 500
+  },
+  "output": {
+    "directory": "outputs/mil_config_run"
+  }
+}
