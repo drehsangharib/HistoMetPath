@@ -114,3 +114,13 @@ MIT License (or update as needed)
 </p>
 
 <h2 align="center">Attention‑based Deep Learning for Histopathology</h2>
+
+## Scientific Scope and Limitations
+
+HistoMetPath currently operates on **synthetic pseudo-slides** derived from
+PatchCamelyon (PCAM) patches.
+
+Performance metrics should not be interpreted as native whole-slide image
+or patient-level diagnostic performance.
+
+Real WSI support requires explicit slide provenance and patient-level splits.
