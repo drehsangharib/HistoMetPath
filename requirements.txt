@@ -6,3 +6,5 @@ lightning
 h5py
 PyYAML
 matplotlib
+openslide-python
+openslide-bin
