@@ -1,0 +1,14 @@
+﻿dataset_name: CAMELYON16
+
+expected_slide_extensions:
+  - .tif
+  - .tiff
+
+training_directory: data/camelyon16/training
+testing_directory: data/camelyon16/testing
+
+openslide_required: true
+
+supported_labels:
+  - tumor
+  - normal
