@@ -1,0 +1,26 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "42-slide expansion; development uses train and validation only"
+processing_manifest: outputs/camelyon16/expanded_fresh_holdout/processing_manifest.json
+fresh_holdout_lock: outputs/camelyon16/expanded_fresh_holdout/fresh_holdout_lock.json
+frozen_protocol_record: outputs/camelyon16/expanded_fresh_holdout/frozen_protocol_record.json
+embedding_root: embeddings/camelyon16/expanded_fresh_holdout
+output_root: outputs/camelyon16/development_lock
+seed: 42
+baseline:
+  logistic_c: 1.0
+  max_iter: 5000
+attention:
+  seeds: [11, 23, 42, 71, 101]
+  hidden_dim: 128
+  learning_rate: 0.0005
+  weight_decay: 0.0001
+  max_epochs: 100
+  patience: 15
+  min_delta: 0.0001
+  gradient_clip_norm: 5.0
+selection_priority:
+  - validation_balanced_accuracy
+  - validation_auroc
+  - validation_auprc
+  - model_name
