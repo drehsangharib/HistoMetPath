@@ -1,0 +1,40 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "42-slide real-WSI expansion with a predeclared fresh six-slide holdout"
+data_root: data/camelyon16/training
+output_root: outputs/camelyon16/expanded_fresh_holdout
+embedding_root: embeddings/camelyon16/expanded_fresh_holdout
+checkpoint: logs/phase_2_3/checkpoints/last.ckpt
+backbone: resnet18
+seed: 42
+target_mpp: 0.5
+tile_size: 256
+stride: 256
+intensity_threshold: 220
+min_tissue_fraction: 0.25
+max_tiles_per_slide: 300
+batch_size: 32
+num_workers: 0
+fixed_validation_slides:
+  - normal_015
+  - normal_016
+  - normal_017
+  - tumor_015
+  - tumor_016
+  - tumor_017
+fixed_test_slides:
+  - normal_018
+  - normal_019
+  - normal_020
+  - tumor_018
+  - tumor_019
+  - tumor_020
+expected_counts_per_class:
+  train: 15
+  validation: 3
+  test: 3
+
+split_counts_per_class:
+  train: 15
+  validation: 3
+  test: 3
