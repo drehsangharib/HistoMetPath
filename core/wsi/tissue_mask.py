@@ -1,48 +1,41 @@
-﻿from pathlib import Path
+﻿"""Simple and reproducible tissue-mask utilities."""
+
+from __future__ import annotations
 
 import numpy as np
 from PIL import Image
 
 
 def create_tissue_mask(
-    thumbnail,
-    brightness_threshold=220,
-):
-    """
-    Detect likely tissue using RGB brightness.
+    image: Image.Image,
+    intensity_threshold: int = 220,
+) -> np.ndarray:
+    """Return a Boolean mask where darker pixels represent tissue."""
 
-    White background is removed.
-    """
+    if not 0 <= intensity_threshold <= 255:
+        raise ValueError(
+            "intensity_threshold must be between 0 and 255."
+        )
 
-    image = np.asarray(
-        thumbnail.convert("RGB")
+    gray = image.convert("L")
+
+    array = np.asarray(
+        gray,
+        dtype=np.uint8,
     )
 
-    gray = image.mean(
-        axis=2
+    return array < intensity_threshold
+
+
+def tissue_fraction(mask: np.ndarray) -> float:
+    """Return the fraction of pixels classified as tissue."""
+
+    mask_array = np.asarray(
+        mask,
+        dtype=bool,
     )
 
-    mask = (
-        gray
-        < brightness_threshold
-    )
+    if mask_array.size == 0:
+        raise ValueError("Tissue mask must not be empty.")
 
-    return mask
-
-
-def tissue_fraction(mask):
-    return float(mask.mean())
-
-
-if __name__ == "__main__":
-    img = Image.new(
-        "RGB",
-        (100, 100),
-        "white",
-    )
-
-    mask = create_tissue_mask(img)
-
-    print(
-        tissue_fraction(mask)
-    )
+    return float(mask_array.mean())

@@ -1,0 +1,21 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "22-slide real-WSI pilot; not a definitive clinical benchmark"
+data_root: data/camelyon16/training
+output_root: outputs/camelyon16/batch_pilot
+embedding_root: embeddings/camelyon16/batch_pilot
+checkpoint: logs/phase_2_3/checkpoints/last.ckpt
+backbone: resnet18
+seed: 42
+target_mpp: 0.5
+tile_size: 256
+stride: 256
+intensity_threshold: 220
+min_tissue_fraction: 0.25
+max_tiles_per_slide: 300
+batch_size: 32
+num_workers: 0
+split_counts_per_class:
+  train: 7
+  validation: 2
+  test: 2
