@@ -1,0 +1,19 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "22-slide real-WSI development pilot with four held-out test slides"
+processing_manifest: outputs/camelyon16/batch_pilot/processing_manifest.json
+embedding_root: embeddings/camelyon16/batch_pilot
+output_root: outputs/camelyon16/real_wsi_mil_pilot
+seed: 42
+baseline:
+  logistic_c: 1.0
+  max_iter: 5000
+attention:
+  seeds: [11, 23, 42, 71, 101]
+  hidden_dim: 128
+  learning_rate: 0.0005
+  weight_decay: 0.0001
+  max_epochs: 100
+  patience: 15
+  min_delta: 0.0001
+  gradient_clip_norm: 5.0
