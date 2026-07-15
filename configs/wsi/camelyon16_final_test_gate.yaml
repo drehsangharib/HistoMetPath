@@ -1,0 +1,17 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+development_lock: outputs/camelyon16/development_lock/development_lock.json
+selected_artifact: outputs/camelyon16/development_lock/selected_development_model.joblib
+processing_manifest: outputs/camelyon16/expanded_fresh_holdout/processing_manifest.json
+fresh_holdout_lock: outputs/camelyon16/expanded_fresh_holdout/fresh_holdout_lock.json
+embedding_root: embeddings/camelyon16/expanded_fresh_holdout
+output_root: outputs/camelyon16/final_fresh_test
+expected_model: attention_mil_five_seed_probability_ensemble
+expected_test_slides:
+  - normal_018
+  - normal_019
+  - normal_020
+  - tumor_018
+  - tumor_019
+  - tumor_020
+refuse_overwrite: true
