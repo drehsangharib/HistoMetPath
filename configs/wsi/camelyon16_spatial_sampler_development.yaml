@@ -1,0 +1,20 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "annotation-independent spatial sampler development using train and validation slides only"
+processing_manifest: outputs/camelyon16/expanded_fresh_holdout/processing_manifest.json
+annotation_root: data/camelyon16/annotations
+output_root: outputs/camelyon16/spatial_sampler_development
+target_mpp: 0.5
+tile_size: 256
+stride: 256
+intensity_threshold: 220
+min_tissue_fraction: 0.25
+spatial_grid_rows: 10
+spatial_grid_columns: 10
+max_tiles_per_bin: 3
+max_tiles_per_slide: 300
+allowed_splits:
+  - train
+  - validation
+prohibited_splits:
+  - test
