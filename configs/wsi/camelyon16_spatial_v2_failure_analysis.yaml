@@ -1,0 +1,27 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "post-selection mechanistic diagnosis of Spatial Sampler v2 misses on development slides only"
+processing_manifest: outputs/camelyon16/expanded_fresh_holdout/processing_manifest.json
+spatial_v2_manifest: outputs/camelyon16/spatial_sampler_v2_development/spatial_v2_sampling_manifest.json
+spatial_v2_coordinate_root: outputs/camelyon16/spatial_sampler_v2_development/coordinates
+annotation_root: data/camelyon16/annotations
+output_root: outputs/camelyon16/spatial_v2_failure_analysis
+tile_size: 256
+stride: 256
+intensity_threshold: 220
+min_tissue_fraction: 0.25
+spatial_grid_rows: 10
+spatial_grid_columns: 10
+allowed_splits:
+  - train
+  - validation
+prohibited_splits:
+  - test
+expected_uncovered_slides:
+  - tumor_002
+  - tumor_003
+  - tumor_005
+  - tumor_010
+  - tumor_100
+  - tumor_015
+  - tumor_017
