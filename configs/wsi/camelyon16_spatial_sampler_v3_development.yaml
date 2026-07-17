@@ -1,0 +1,23 @@
+schema_version: "3.0"
+dataset: CAMELYON16
+scientific_scope: "annotation-independent morphology-aware Spatial Sampler v3; train and validation only"
+processing_manifest: outputs/camelyon16/expanded_fresh_holdout/processing_manifest.json
+annotation_root: data/camelyon16/annotations
+raster_coordinate_root: embeddings/camelyon16/expanded_fresh_holdout
+spatial_v1_coordinate_root: outputs/camelyon16/spatial_sampler_development/coordinates
+spatial_v2_coordinate_root: outputs/camelyon16/spatial_sampler_v2_development/coordinates
+output_root: outputs/camelyon16/spatial_sampler_v3_development
+tile_size: 256
+stride: 256
+intensity_threshold: 220
+min_tissue_fraction: 0.25
+spatial_grid_rows: 10
+spatial_grid_columns: 10
+max_tiles_per_slide: 300
+minimum_tiles_per_occupied_bin: 1
+allocation_method: largest_remainder_by_candidate_density
+selection_method: deterministic_joint_spatial_morphology_farthest_point
+spatial_weight: 1.0
+morphology_weight: 1.0
+allowed_splits: [train, validation]
+prohibited_splits: [test]
