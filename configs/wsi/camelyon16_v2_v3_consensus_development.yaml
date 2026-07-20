@@ -1,0 +1,14 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "frozen development-only v2/v3 consensus sampler"
+processing_manifest: outputs/camelyon16/expanded_fresh_holdout/processing_manifest.json
+annotation_root: data/camelyon16/annotations
+v2_coordinate_root: outputs/camelyon16/spatial_sampler_v2_development/coordinates
+v3_coordinate_root: outputs/camelyon16/spatial_sampler_v3_development/coordinates
+output_root: outputs/camelyon16/v2_v3_consensus_development
+max_tiles_per_slide: 300
+shared_coordinate_policy: preserve_all
+unique_source_policy: equal_quota_then_reallocate
+within_source_policy: deterministic_farthest_point
+allowed_splits: [train, validation]
+prohibited_splits: [test]
