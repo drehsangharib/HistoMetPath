@@ -1,0 +1,22 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "development-only sampler stability and Pareto audit; no model outputs"
+processing_manifest: outputs/camelyon16/expanded_fresh_holdout/processing_manifest.json
+annotation_root: data/camelyon16/annotations
+final_test_lock: outputs/camelyon16/final_fresh_test/FINAL_TEST_EXECUTED.lock
+output_root: outputs/camelyon16/sampler_portfolio_audit
+tile_size: 256
+spatial_grid_rows: 10
+spatial_grid_columns: 10
+allowed_splits: [train, validation]
+prohibited_splits: [test]
+samplers:
+  raster: embeddings/camelyon16/expanded_fresh_holdout
+  spatial_v1: outputs/camelyon16/spatial_sampler_development/coordinates
+  spatial_v2: outputs/camelyon16/spatial_sampler_v2_development/coordinates
+  spatial_v3: outputs/camelyon16/spatial_sampler_v3_development/coordinates
+pareto_objectives:
+  - lesion_positive_bag_fraction
+  - total_lesion_intersecting_tiles
+  - mean_polygon_coverage
+  - mean_occupied_bin_fraction
