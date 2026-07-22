@@ -1,0 +1,18 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "development-only v2/v3 union upper-bound and consensus loss-attribution audit"
+processing_manifest: outputs/camelyon16/expanded_fresh_holdout/processing_manifest.json
+annotation_root: data/camelyon16/annotations
+v2_coordinate_root: outputs/camelyon16/spatial_sampler_v2_development/coordinates
+v3_coordinate_root: outputs/camelyon16/spatial_sampler_v3_development/coordinates
+consensus_coordinate_root: outputs/camelyon16/v2_v3_consensus_development/coordinates
+consensus_manifest: outputs/camelyon16/v2_v3_consensus_development/consensus_manifest.json
+final_test_lock: outputs/camelyon16/final_fresh_test/FINAL_TEST_EXECUTED.lock
+output_root: outputs/camelyon16/consensus_loss_attribution
+tile_size: 256
+allowed_splits: [train, validation]
+prohibited_splits: [test]
+expected_consensus_parent_losses:
+  - tumor_006
+  - tumor_008
+  - tumor_100
