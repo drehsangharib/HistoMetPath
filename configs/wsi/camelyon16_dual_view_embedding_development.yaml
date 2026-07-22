@@ -1,0 +1,20 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "development-only dual-view v2/v3 embedding materialization with frozen encoder"
+processing_manifest: outputs/camelyon16/expanded_fresh_holdout/processing_manifest.json
+v2_coordinate_root: outputs/camelyon16/spatial_sampler_v2_development/coordinates
+v3_coordinate_root: outputs/camelyon16/spatial_sampler_v3_development/coordinates
+output_root: embeddings/camelyon16/dual_view_development
+manifest_root: outputs/camelyon16/dual_view_embedding_development
+checkpoint: logs/phase_2_3/checkpoints/last.ckpt
+backbone: resnet18
+embedding_dimension: 512
+tile_size: 256
+batch_size: 32
+num_workers: 0
+allowed_splits: [train, validation]
+prohibited_splits: [test]
+views:
+  - spatial_v2
+  - spatial_v3
+refuse_overwrite: false
