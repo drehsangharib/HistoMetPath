@@ -1,0 +1,20 @@
+schema_version: "1.0"
+dataset: CAMELYON16
+scientific_scope: "training-only calibration and selective-prediction audit for Spatial v2 and dual-view concatenation"
+training_predictions: outputs/camelyon16/training_only_stability/training_only_oof_predictions.csv
+training_stability_results: outputs/camelyon16/training_only_stability/training_only_stability_results.json
+disagreement_audit: outputs/camelyon16/v2_concat_disagreement_audit/v2_concat_disagreement_audit.json
+frozen_validation_results: outputs/camelyon16/dual_view_baselines/dual_view_baseline_results.json
+final_test_lock: outputs/camelyon16/final_fresh_test/FINAL_TEST_EXECUTED.lock
+output_root: outputs/camelyon16/training_only_calibration_selective
+models:
+  - spatial_v2_mean_pool_lr
+  - dual_view_mean_concat_lr
+expected_training_slides: 30
+expected_repeats: 10
+decision_threshold: 0.5
+calibration_bins: 5
+confidence_definition: "absolute_distance_from_0.5_times_2"
+coverage_levels: [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]
+allowed_split: train
+prohibited_splits: [validation, test]
