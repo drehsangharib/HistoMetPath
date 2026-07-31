@@ -1,0 +1,15 @@
+{
+  "cohort_id": "REPLACE_WITH_UNIQUE_COHORT_ID",
+  "cohort_source": "REPLACE_WITH_SOURCE_AND_ACCESS_DETAILS",
+  "cohort_created_utc": "YYYY-MM-DDTHH:MM:SSZ",
+  "slides": [
+    {
+      "slide_id": "external_001",
+      "source_path": "data/external_evaluation/slides/external_001.tif",
+      "label": "normal",
+      "patient_id": "patient_001",
+      "acquisition_site": "site_001",
+      "accession_or_case_id": "case_001"
+    }
+  ]
+}
