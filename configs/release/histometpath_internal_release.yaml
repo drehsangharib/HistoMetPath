@@ -1,0 +1,31 @@
+schema_version: "1.0"
+project: HistoMetPath
+release_name: "HistoMetPath Internal Development Release"
+release_status: "development-complete; external evaluation pending"
+decision_result: outputs/camelyon16/development_decision_release/development_decision.json
+decision_report: outputs/camelyon16/development_decision_release/DEVELOPMENT_DECISION_REPORT.md
+final_test_lock: outputs/camelyon16/final_fresh_test/FINAL_TEST_EXECUTED.lock
+output_root: outputs/camelyon16/internal_release_bundle
+include_repository_files:
+  - README.md
+  - environment.yml
+  - requirements.txt
+  - configs
+  - docs
+  - analysis
+  - core
+  - tests
+  - scripts
+exclude_patterns:
+  - "__pycache__"
+  - ".pytest_cache"
+  - "*.pyc"
+  - "*.pyo"
+  - "*.npy"
+  - "*.tif"
+  - "*.tiff"
+  - "*.ckpt"
+  - "*.pt"
+  - "*.joblib"
+  - "*.zip"
+  - ".git"
