@@ -1,0 +1,30 @@
+schema_version: "1.0"
+project: HistoMetPath
+scientific_scope: "pre-execution lock for one-time frozen CAMELYON17 balanced pilot evaluation"
+external_manifest: data/external_evaluation/EXTERNAL_COHORT_MANIFEST.json
+readiness_result: outputs/external_evaluation/readiness/external_cohort_readiness.json
+development_decision: outputs/camelyon16/development_decision_release/development_decision.json
+final_test_lock: outputs/camelyon16/final_fresh_test/FINAL_TEST_EXECUTED.lock
+frozen_model_artifact: outputs/camelyon16/dual_view_baselines/dual_view_baseline_artifacts.joblib
+frozen_embedding_config: configs/wsi/camelyon16_dual_view_embedding_development.yaml
+frozen_primary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v2.yaml
+frozen_secondary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v3.yaml
+frozen_encoder_checkpoint: logs/phase_2_3/checkpoints/last.ckpt
+output_root: outputs/external_evaluation/frozen_execution_lock
+primary_model: spatial_v2_mean_pool_lr
+secondary_model: dual_view_mean_concat_lr
+expected_slides: 20
+expected_normal_slides: 10
+expected_tumor_slides: 10
+expected_unique_patients: 20
+selection_design: "label-balanced, five-center, one-slide-per-patient, size-optimized pilot"
+selection_limitations:
+  - "Labels were used to construct a balanced pilot; prevalence-sensitive metrics are not population estimates."
+  - "Slide size was used for acquisition feasibility; this is not a random sample of CAMELYON17."
+  - "Results must be reported as a constrained external pilot, not definitive external validation."
+prohibit_model_refitting: true
+prohibit_threshold_refitting: true
+prohibit_sampler_changes: true
+prohibit_encoder_changes: true
+prohibit_case_exclusion_after_inference: true
+execution_count_limit: 1
