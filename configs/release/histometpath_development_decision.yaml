@@ -1,0 +1,25 @@
+schema_version: "1.0"
+project: HistoMetPath
+release_scope: "frozen internal CAMELYON16 development decision"
+output_root: outputs/camelyon16/development_decision_release
+required_evidence:
+  final_test_lock: outputs/camelyon16/final_fresh_test/FINAL_TEST_EXECUTED.lock
+  final_test_result: outputs/camelyon16/final_fresh_test/final_test_result.json
+  sampler_portfolio: outputs/camelyon16/sampler_portfolio_audit/sampler_portfolio_audit.json
+  consensus_loss_attribution: outputs/camelyon16/consensus_loss_attribution/consensus_loss_attribution.json
+  dual_view_baselines: outputs/camelyon16/dual_view_baselines/dual_view_baseline_results.json
+  training_stability: outputs/camelyon16/training_only_stability/training_only_stability_results.json
+  disagreement_audit: outputs/camelyon16/v2_concat_disagreement_audit/v2_concat_disagreement_audit.json
+  calibration_selective: outputs/camelyon16/training_only_calibration_selective/training_only_calibration_selective.json
+  slide_level_calibration: outputs/camelyon16/training_only_slide_level_calibration/training_only_slide_level_calibration.json
+frozen_decisions:
+  primary_development_baseline: spatial_v2_mean_pool_lr
+  secondary_exploratory_candidate: dual_view_mean_concat_lr
+  discontinued_methods:
+    - dual_view_oof_logistic_stacking
+    - equal_quota_v2_v3_consensus_as_primary_sampler
+    - confidence_based_abstention
+    - agreement_only_abstention
+  raw_probabilities_are_calibrated_risk: false
+  completed_final_test_is_immutable: true
+  new_performance_claim_requires_untouched_cohort: true
