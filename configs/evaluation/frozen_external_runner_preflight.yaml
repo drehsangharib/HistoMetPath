@@ -1,0 +1,20 @@
+schema_version: "1.0"
+project: HistoMetPath
+scientific_scope: "non-consuming preflight for the one-time frozen CAMELYON17 external evaluation runner"
+external_lock: outputs/external_evaluation/frozen_execution_lock/FROZEN_EXTERNAL_EVALUATION.lock
+lock_checksum_record: outputs/external_evaluation/frozen_execution_lock/LOCK_CHECKSUM_RECORD.json
+external_manifest: data/external_evaluation/EXTERNAL_COHORT_MANIFEST.json
+readiness_result: outputs/external_evaluation/readiness/external_cohort_readiness.json
+frozen_model_artifact: outputs/camelyon16/dual_view_baselines/dual_view_baseline_artifacts.joblib
+frozen_embedding_config: configs/wsi/camelyon16_dual_view_embedding_development.yaml
+primary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v2_development.yaml
+secondary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v3_development.yaml
+encoder_checkpoint: logs/phase_2_3/checkpoints/last.ckpt
+output_root: outputs/external_evaluation/runner_preflight
+expected_slides: 20
+expected_execution_count: 0
+minimum_free_space_gib: 15
+primary_model: spatial_v2_mean_pool_lr
+secondary_model: dual_view_mean_concat_lr
+prohibit_inference: true
+prohibit_lock_mutation: true
