@@ -1,0 +1,26 @@
+schema_version: "1.0"
+project: HistoMetPath
+scientific_scope: "one-time frozen CAMELYON17 external pilot runner contract"
+external_lock: outputs/external_evaluation/frozen_execution_lock/FROZEN_EXTERNAL_EVALUATION.lock
+lock_checksum_record: outputs/external_evaluation/frozen_execution_lock/LOCK_CHECKSUM_RECORD.json
+external_manifest: data/external_evaluation/EXTERNAL_COHORT_MANIFEST.json
+readiness_result: outputs/external_evaluation/readiness/external_cohort_readiness.json
+runner_preflight_result: outputs/external_evaluation/runner_preflight/frozen_external_runner_preflight.json
+frozen_model_artifact: outputs/camelyon16/dual_view_baselines/dual_view_baseline_artifacts.joblib
+encoder_checkpoint: logs/phase_2_3/checkpoints/last.ckpt
+embedding_config: configs/wsi/camelyon16_dual_view_embedding_development.yaml
+primary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v2_development.yaml
+secondary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v3_development.yaml
+output_root: outputs/external_evaluation/one_time_runner
+expected_slides: 20
+expected_normal_slides: 10
+expected_tumor_slides: 10
+expected_primary_features: 512
+expected_secondary_features: 1024
+expected_coordinates_per_view: 300
+primary_model: spatial_v2_mean_pool_lr
+secondary_model: dual_view_mean_concat_lr
+primary_threshold: 0.2404209436418631
+execution_count_limit: 1
+required_execution_token: "I_UNDERSTAND_THIS_CONSUMES_THE_ONLY_EXTERNAL_EXECUTION"
+execute_implementation_enabled: false
