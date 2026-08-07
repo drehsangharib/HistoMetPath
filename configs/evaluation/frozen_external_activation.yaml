@@ -1,0 +1,24 @@
+schema_version: "1.0"
+project: HistoMetPath
+scientific_scope: "execution-disabled activation implementation for the sealed CAMELYON17 external pilot"
+external_lock: outputs/external_evaluation/frozen_execution_lock/FROZEN_EXTERNAL_EVALUATION.lock
+lock_checksum_record: outputs/external_evaluation/frozen_execution_lock/LOCK_CHECKSUM_RECORD.json
+external_processing_manifest: outputs/external_evaluation/frozen_adapter/external_processing_manifest.json
+external_adapter_preflight: outputs/external_evaluation/frozen_adapter/external_adapter_preflight.json
+runner_preflight: outputs/external_evaluation/runner_preflight/frozen_external_runner_preflight.json
+frozen_model_artifact: outputs/camelyon16/dual_view_baselines/dual_view_baseline_artifacts.joblib
+embedding_config: configs/wsi/camelyon16_dual_view_embedding_development.yaml
+primary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v2_development.yaml
+secondary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v3_development.yaml
+output_root: outputs/external_evaluation/activation_implementation
+expected_slides: 20
+expected_coordinates_per_view: 300
+expected_embedding_rows: 300
+expected_embedding_features: 512
+expected_primary_features: 512
+expected_secondary_features: 1024
+primary_model: spatial_v2_mean_pool_lr
+secondary_model: dual_view_mean_concat_lr
+primary_threshold: 0.2404209436418631
+activation_execution_enabled: false
+execution_count_limit: 1
