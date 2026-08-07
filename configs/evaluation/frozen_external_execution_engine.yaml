@@ -1,0 +1,19 @@
+schema_version: "1.0"
+project: HistoMetPath
+scientific_scope: "synthetic-only dry-run validation of the final one-time external execution engine"
+external_lock: outputs/external_evaluation/frozen_execution_lock/FROZEN_EXTERNAL_EVALUATION.lock
+lock_checksum_record: outputs/external_evaluation/frozen_execution_lock/LOCK_CHECKSUM_RECORD.json
+frozen_model_artifact: outputs/camelyon16/dual_view_baselines/dual_view_baseline_artifacts.joblib
+output_root: outputs/external_evaluation/execution_engine_dry_run
+primary_model: spatial_v2_mean_pool_lr
+secondary_model: dual_view_mean_concat_lr
+primary_threshold: 0.2404209436418631
+expected_slides: 20
+coordinates_per_view: 300
+embedding_rows: 300
+embedding_features: 512
+primary_features: 512
+secondary_features: 1024
+execution_count_limit: 1
+real_wsi_access_enabled: false
+external_execution_enabled: false
