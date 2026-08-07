@@ -1,0 +1,20 @@
+schema_version: "1.0"
+project: HistoMetPath
+scientific_scope: "frozen external WSI adapter for the sealed CAMELYON17 pilot"
+external_manifest: data/external_evaluation/EXTERNAL_COHORT_MANIFEST.json
+external_lock: outputs/external_evaluation/frozen_execution_lock/FROZEN_EXTERNAL_EVALUATION.lock
+primary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v2_development.yaml
+secondary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v3_development.yaml
+embedding_config: configs/wsi/camelyon16_dual_view_embedding_development.yaml
+frozen_model_artifact: outputs/camelyon16/dual_view_baselines/dual_view_baseline_artifacts.joblib
+output_root: outputs/external_evaluation/frozen_adapter
+coordinate_root: outputs/external_evaluation/frozen_adapter/coordinates
+embedding_root: embeddings/external_evaluation/frozen_adapter
+expected_slides: 20
+expected_coordinates_per_view: 300
+expected_embedding_shape: [300, 512]
+primary_model: spatial_v2_mean_pool_lr
+secondary_model: dual_view_mean_concat_lr
+primary_threshold: 0.2404209436418631
+external_split_name: external_test
+adapter_execution_enabled: false
