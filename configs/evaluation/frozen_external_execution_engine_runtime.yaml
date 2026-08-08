@@ -1,0 +1,28 @@
+schema_version: "1.0"
+project: HistoMetPath
+scientific_scope: "reviewed but execution-disabled final one-time CAMELYON17 external execution engine"
+external_lock: outputs/external_evaluation/frozen_execution_lock/FROZEN_EXTERNAL_EVALUATION.lock
+lock_checksum_record: outputs/external_evaluation/frozen_execution_lock/LOCK_CHECKSUM_RECORD.json
+external_processing_manifest: outputs/external_evaluation/frozen_adapter/external_processing_manifest.json
+runner_preflight: outputs/external_evaluation/runner_preflight/frozen_external_runner_preflight.json
+activation_preflight: outputs/external_evaluation/activation_implementation/activation_implementation_preflight.json
+synthetic_dry_run: outputs/external_evaluation/execution_engine_dry_run/execution_engine_synthetic_dry_run.json
+frozen_model_artifact: outputs/camelyon16/dual_view_baselines/dual_view_baseline_artifacts.joblib
+embedding_config: configs/wsi/camelyon16_dual_view_embedding_development.yaml
+primary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v2_development.yaml
+secondary_sampler_config: configs/wsi/camelyon16_spatial_sampler_v3_development.yaml
+output_root: outputs/external_evaluation/final_execution_engine
+coordinate_root: outputs/external_evaluation/final_execution_engine/coordinates
+embedding_root: embeddings/external_evaluation/final_execution_engine
+expected_slides: 20
+expected_coordinates_per_view: 300
+expected_embedding_shape: [300, 512]
+expected_primary_features: 512
+expected_secondary_features: 1024
+primary_model: spatial_v2_mean_pool_lr
+secondary_model: dual_view_mean_concat_lr
+primary_threshold: 0.2404209436418631
+execution_count_limit: 1
+required_execution_token: "I_UNDERSTAND_THIS_CONSUMES_THE_ONLY_EXTERNAL_EXECUTION"
+external_execution_enabled: false
+real_wsi_access_enabled: false
