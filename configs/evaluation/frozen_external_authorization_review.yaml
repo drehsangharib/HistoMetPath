@@ -1,0 +1,25 @@
+schema_version: "1.2"
+project: HistoMetPath
+scientific_scope: "final non-consuming authorization review for the sealed CAMELYON17 pilot"
+external_lock: outputs/external_evaluation/frozen_execution_lock/FROZEN_EXTERNAL_EVALUATION.lock
+lock_checksum_record: outputs/external_evaluation/frozen_execution_lock/LOCK_CHECKSUM_RECORD.json
+runner_preflight: outputs/external_evaluation/runner_preflight/frozen_external_runner_preflight.json
+activation_preflight: outputs/external_evaluation/activation_implementation/activation_implementation_preflight.json
+final_engine_preflight: outputs/external_evaluation/final_execution_engine/final_engine_preflight.json
+final_engine_synthetic_integration: outputs/external_evaluation/final_execution_engine/final_engine_synthetic_integration.json
+final_engine_runtime_config: configs/evaluation/frozen_external_execution_engine_runtime.yaml
+final_engine_source: analysis/run_frozen_external_execution_engine.py
+output_root: outputs/external_evaluation/final_authorization_review
+expected_slides: 20
+expected_execution_count: 0
+execution_count_limit: 1
+require_external_execution_disabled: true
+require_real_wsi_access_disabled: true
+prohibit_inference: true
+prohibit_lock_mutation: true
+prohibit_execution_token_use: true
+allowed_precommit_paths:
+  - analysis/review_frozen_external_authorization.py
+  - configs/evaluation/frozen_external_authorization_review.yaml
+  - docs/FROZEN_EXTERNAL_AUTHORIZATION_REVIEW.md
+  - tests/test_frozen_external_authorization_review.py
