@@ -1,126 +1,109 @@
 # HistoMetPath
-Patch‑to‑WSI deep learning pipeline for breast cancer metastasis detection with attention‑based MIL and interpretability.
 
-HistoMetPath is a complete, research-grade deep learning pipeline for breast cancer metastasis detection in histopathology images.
-The project progresses from patch-level classification to slide-level multiple instance learning (MIL) with attention-based interpretability.
+[![CI](https://github.com/drehsangharib/HistoMetPath/actions/workflows/ci.yml/badge.svg)](https://github.com/drehsangharib/HistoMetPath/actions)
+[![Development Release](https://img.shields.io/badge/release-development--release--2251265-blue)](https://github.com/drehsangharib/HistoMetPath/releases/tag/development-release-2251265)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-This repository reflects a fully implemented and evaluated system.
+**Reproducible patch-to-slide computational pathology with leakage-safe pseudo-slides, spatial sampling, multiple-instance learning, and frozen evaluation governance.**
 
-------------------------------------------------------------
-HIGHLIGHTS
-------------------------------------------------------------
+HistoMetPath is an open-source research framework for developing slide-level histopathology models from patch-level data while preserving split integrity, spatial diversity, reproducibility, and strict evaluation boundaries. The project combines PatchCamelyon-based development with CAMELYON16 whole-slide workflows and a sealed, currently unexecuted CAMELYON17 external pilot.
 
-- Patch-level CNN with stain normalization
-- Clinically calibrated decision threshold
-- Patch embedding extraction
-- Pseudo-slide construction (PCAM-compatible)
-- Mean and max pooling MIL baselines
-- Attention-based MIL (Ilse et al., 2018)
-- Visualization of attention on original RGB patches
-- Fully reproducible, modular codebase
+> **Current public milestone:** [HistoMetPath Public Development Release](https://github.com/drehsangharib/HistoMetPath/releases/tag/development-release-2251265), published from commit `22512657feb230e50613be7d5b2a9f0624c9461e`.
 
-------------------------------------------------------------
-SCIENTIFIC MOTIVATION
-------------------------------------------------------------
+## Project status
 
-Breast cancer metastasis is the primary cause of mortality in breast cancer patients.
-Histopathological assessment of lymph nodes is time-consuming and subject to inter-observer variability.
+- Public source-only development prerelease published with checksum and audit records.
+- 69 automated tests passed at the released commit, with GitHub Actions CI green.
+- CAMELYON16 held-out evaluation is complete and immutable; it must not be rerun or used for further tuning.
+- CAMELYON17 external pilot is cryptographically sealed and remains unexecuted.
+- External execution and real-WSI access remain disabled; execution count is `0 of 1`.
+- No definitive external-validation or clinical-performance claim is made.
 
-Deep learning offers powerful tools for assisting pathologists, but practical deployment requires:
-- Robustness to staining variability
-- Sensitivity to sparse metastatic regions
-- Slide-level decision making
-- Interpretability of model predictions
+## Why HistoMetPath
 
-HistoMetPath addresses these challenges through a principled patch-to-WSI modeling pipeline.
+Patch-level datasets are useful for representation learning, but naive patch-to-slide conversion can introduce leakage, spatial bias, optimistic estimates, and repeated evaluation against held-out data. HistoMetPath addresses these risks with explicit data contracts, deterministic sampling, frozen model-selection rules, and auditable execution gates.
 
-------------------------------------------------------------
-DATASET
-------------------------------------------------------------
+## Core capabilities
 
-This project uses the PatchCamelyon (PCAM) dataset.
+- Leakage-safe pseudo-slide construction from patch-level data.
+- Spatially distributed tile sampling, including frozen spatial-v2 and spatial-v3 development strategies.
+- Mean, max, and attention-based multiple-instance learning components.
+- Dual-view tile embedding and slide-level aggregation workflows.
+- Training-only calibration, selective prediction, uncertainty, and stability analysis.
+- CAMELYON16 WSI manifests, lesion-coverage analysis, failure attribution, and reproducible split controls.
+- Frozen development decisions and immutable final-test governance.
+- External-cohort readiness checks, non-consuming preflights, and a disabled one-time execution engine.
+- Automated tests, CI, manifests, checksums, documentation, and source-only release auditing.
 
-Due to licensing restrictions, the dataset is NOT included in this repository.
+## Pipeline overview
 
-Download PCAM from:
-https://github.com/basveeling/pcam
+```text
+Patch-level data / WSI manifests
+        |
+Leakage-safe split and pseudo-slide construction
+        |
+Spatial tile sampling and tissue-quality controls
+        |
+Frozen tile embeddings and MIL aggregation
+        |
+Slide-level calibration, uncertainty, and stability audits
+        |
+Immutable held-out evaluation and sealed external execution contract
+```
 
-Place the HDF5 files under:
+## Evaluation governance
 
-data/pcam/
+### CAMELYON16
 
-------------------------------------------------------------
-PIPELINE OVERVIEW
-------------------------------------------------------------
+The completed held-out CAMELYON16 test is immutable. The recorded result is a small development benchmark and must not be rerun, selectively reported, or used for additional tuning. The release preserves this boundary through frozen configurations and decision records.
 
-Phase 2.3 — Patch-Level Modeling
-1. Patch-level CNN training with stain normalization
-2. Validation-based threshold calibration
-3. Clinically interpretable operating point selection
+### CAMELYON17
 
-Phase 2.4 — Slide-Level Modeling (WSI / MIL)
-4. Patch embedding extraction (512-D)
-5. Pseudo-slide construction (synthetic MIL bags)
-6. MIL baselines (mean and max pooling)
-7. Attention-based MIL
-8. Attention visualization on original RGB patches
+The CAMELYON17 external pilot is sealed at the released commit and remains unexecuted. The pilot permits a maximum of one deliberate execution, and routine development or documentation work must not consume that evaluation. Any future result must be described as a constrained pilot rather than definitive external or clinical validation.
 
-------------------------------------------------------------
-KEY RESULTS
-------------------------------------------------------------
+## Reproducibility and testing
 
-- Patch-level validation AUC ≈ 0.87
-- Slide-level validation AUC ≈ 0.99 (attention MIL)
-- Attention focuses on tumor-relevant histopathological regions
-- Strong agreement between quantitative performance and qualitative interpretability
+Install dependencies and run the test suite:
 
-------------------------------------------------------------
-REPOSITORY STRUCTURE
-------------------------------------------------------------
+```powershell
+py -3.11 -m pip install -r requirements.txt
+py -3.11 -m pytest tests -v
+```
 
-datasets/        PCAM dataset loader
-models/          CNN backbone and classifiers
-training/        Training logic and metrics
-analysis/        Thresholding, MIL, attention, visualization
-configs/         Experiment configuration files
+The repository uses deterministic manifests, fixed seeds where applicable, configuration-driven workflows, GitHub Actions CI, and checksum-backed release artifacts. Raw WSI data, embeddings, checkpoints, and runtime outputs are intentionally excluded from version control.
 
-Generated artifacts (data, embeddings, logs, figures) are intentionally excluded from version control.
+## Repository structure
 
-------------------------------------------------------------
-REPRODUCIBILITY
-------------------------------------------------------------
+```text
+.github/workflows/   GitHub Actions CI
+analysis/            modeling, calibration, WSI, readiness, and audit commands
+configs/             frozen experiment and evaluation contracts
+core/                reusable pipeline and WSI components
+docs/                development decisions and execution-governance documentation
+models/              patch-level and MIL model definitions
+scripts/             acquisition and operational utilities
+tests/               automated unit, smoke, schema, and safety tests
+training/            training workflows
+```
 
-All experiments in this repository are fully reproducible.
+## Public development release
 
-- Raw data is not included due to licensing constraints.
-- All intermediate artifacts (embeddings, logs, attention figures) are regenerated by running the provided scripts.
-- Random seeds are fixed where applicable.
-- Each stage of the pipeline is implemented as a standalone script under the analysis directory.
+The reviewed source-only prerelease includes:
 
-Reproduction steps:
-1. Download the PCAM dataset
-2. Train the patch-level model using main_train.py
-3. Run analysis scripts in the documented order
+- publication-ready source ZIP;
+- SHA-256 checksum sidecar;
+- final publication audit JSON.
 
-------------------------------------------------------------
-LICENSE
-------------------------------------------------------------
+Release: https://github.com/drehsangharib/HistoMetPath/releases/tag/development-release-2251265
 
-MIT License (or update as needed)
+## Scientific scope and limitations
 
+HistoMetPath is a research and software-engineering framework. It is not a medical device, is not clinically validated, and is not intended for patient-care decisions. Pseudo-slide results must not be interpreted as native whole-slide or patient-level diagnostic performance. New comparative claims require a new untouched evaluation cohort.
 
-<p align="center">
-  <img src="logo/histometpath_logo.png" alt="HistoMetPath Logo" width="300"/>
-</p>
+## Citation
 
-<h2 align="center">Attention‑based Deep Learning for Histopathology</h2>
+Please use the repository's `CITATION.cff` file and cite the exact release tag used in your work.
 
-## Scientific Scope and Limitations
+## License
 
-HistoMetPath currently operates on **synthetic pseudo-slides** derived from
-PatchCamelyon (PCAM) patches.
-
-Performance metrics should not be interpreted as native whole-slide image
-or patient-level diagnostic performance.
-
-Real WSI support requires explicit slide provenance and patient-level splits.
+Released under the [MIT License](LICENSE).
